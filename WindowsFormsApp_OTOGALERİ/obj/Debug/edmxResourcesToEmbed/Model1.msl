@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="oto_galeriEntities">
+    <EntitySetMapping Name="Araç">
+      <EntityTypeMapping TypeName="Model.Araç">
+        <MappingFragment StoreEntitySet="Araç">
+          <ScalarProperty Name="arac_durum" ColumnName="arac_durum" />
+          <ScalarProperty Name="arac_id" ColumnName="arac_id" />
+          <ScalarProperty Name="arac_fiyat" ColumnName="arac_fiyat" />
+          <ScalarProperty Name="arac_adet" ColumnName="arac_adet" />
+          <ScalarProperty Name="arac_marka" ColumnName="arac_marka" />
+          <ScalarProperty Name="arac_model" ColumnName="arac_model" />
+          <ScalarProperty Name="arac_yıl" ColumnName="arac_yıl" />
+          <ScalarProperty Name="arac_yakıt" ColumnName="arac_yakıt" />
+          <ScalarProperty Name="arac_vites" ColumnName="arac_vites" />
+          <ScalarProperty Name="arac_renk" ColumnName="arac_renk" />
+          <ScalarProperty Name="sube_id" ColumnName="sube_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="giris">
+      <EntityTypeMapping TypeName="Model.giris">
+        <MappingFragment StoreEntitySet="giris">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="soyad" ColumnName="soyad" />
+          <ScalarProperty Name="kullanıcı_adı" ColumnName="kullanıcı_adı" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="sifre_tekrar" ColumnName="sifre_tekrar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Müsteri">
+      <EntityTypeMapping TypeName="Model.Müsteri">
+        <MappingFragment StoreEntitySet="Müsteri">
+          <ScalarProperty Name="müsteri_id" ColumnName="müsteri_id" />
+          <ScalarProperty Name="müsteri_adsoy" ColumnName="müsteri_adsoy" />
+          <ScalarProperty Name="müsteri_mail" ColumnName="müsteri_mail" />
+          <ScalarProperty Name="müsteri_tc" ColumnName="müsteri_tc" />
+          <ScalarProperty Name="müsteri_tel" ColumnName="müsteri_tel" />
+          <ScalarProperty Name="müsteri_adres" ColumnName="müsteri_adres" />
+          <ScalarProperty Name="müsteri_dogumtar" ColumnName="müsteri_dogumtar" />
+          <ScalarProperty Name="resim" ColumnName="resim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personel">
+      <EntityTypeMapping TypeName="Model.Personel">
+        <MappingFragment StoreEntitySet="Personel">
+          <ScalarProperty Name="personel_id" ColumnName="personel_id" />
+          <ScalarProperty Name="personel_adsoy" ColumnName="personel_adsoy" />
+          <ScalarProperty Name="yas" ColumnName="yas" />
+          <ScalarProperty Name="tc" ColumnName="tc" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="sube_id" ColumnName="sube_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Satis">
+      <EntityTypeMapping TypeName="Model.Satis">
+        <MappingFragment StoreEntitySet="Satis">
+          <ScalarProperty Name="satis_id" ColumnName="satis_id" />
+          <ScalarProperty Name="satis_tarihi" ColumnName="satis_tarihi" />
+          <ScalarProperty Name="satis_fiyati" ColumnName="satis_fiyati" />
+          <ScalarProperty Name="müsteri_id" ColumnName="müsteri_id" />
+          <ScalarProperty Name="arac_id" ColumnName="arac_id" />
+          <ScalarProperty Name="personel_id" ColumnName="personel_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sube">
+      <EntityTypeMapping TypeName="Model.Sube">
+        <MappingFragment StoreEntitySet="Sube">
+          <ScalarProperty Name="sube_id" ColumnName="sube_id" />
+          <ScalarProperty Name="sube_adı" ColumnName="sube_adı" />
+          <ScalarProperty Name="sube_adres" ColumnName="sube_adres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

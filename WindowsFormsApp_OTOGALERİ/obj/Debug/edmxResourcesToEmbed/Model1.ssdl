@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Araç">
+    <Key>
+      <PropertyRef Name="arac_id" />
+    </Key>
+    <Property Name="arac_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="arac_fiyat" Type="int" />
+    <Property Name="arac_adet" Type="int" />
+    <Property Name="arac_marka" Type="varchar" MaxLength="50" />
+    <Property Name="arac_model" Type="varchar" MaxLength="50" />
+    <Property Name="arac_yıl" Type="int" />
+    <Property Name="arac_yakıt" Type="varchar" MaxLength="50" />
+    <Property Name="arac_vites" Type="varchar" MaxLength="50" />
+    <Property Name="arac_renk" Type="varchar" MaxLength="50" />
+    <Property Name="sube_id" Type="int" />
+    <Property Name="arac_durum" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="giris">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad" Type="varchar" MaxLength="50" />
+    <Property Name="soyad" Type="varchar" MaxLength="50" />
+    <Property Name="kullanıcı_adı" Type="varchar" MaxLength="50" />
+    <Property Name="sifre" Type="varchar" MaxLength="50" />
+    <Property Name="sifre_tekrar" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Müsteri">
+    <Key>
+      <PropertyRef Name="müsteri_id" />
+    </Key>
+    <Property Name="müsteri_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="müsteri_adsoy" Type="varchar" MaxLength="50" />
+    <Property Name="müsteri_mail" Type="varchar" MaxLength="100" />
+    <Property Name="müsteri_tc" Type="varchar" MaxLength="11" />
+    <Property Name="müsteri_tel" Type="varchar" MaxLength="20" />
+    <Property Name="müsteri_adres" Type="varchar" MaxLength="50" />
+    <Property Name="müsteri_dogumtar" Type="date" />
+    <Property Name="resim" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="personel_id" />
+    </Key>
+    <Property Name="personel_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="personel_adsoy" Type="varchar" MaxLength="50" />
+    <Property Name="yas" Type="int" />
+    <Property Name="tc" Type="varchar" MaxLength="50" />
+    <Property Name="mail" Type="varchar" MaxLength="50" />
+    <Property Name="telefon" Type="int" />
+    <Property Name="adres" Type="varchar" MaxLength="50" />
+    <Property Name="sube_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Satis">
+    <Key>
+      <PropertyRef Name="satis_id" />
+    </Key>
+    <Property Name="satis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="satis_tarihi" Type="date" />
+    <Property Name="satis_fiyati" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="müsteri_id" Type="int" />
+    <Property Name="arac_id" Type="int" />
+    <Property Name="personel_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Sube">
+    <Key>
+      <PropertyRef Name="sube_id" />
+    </Key>
+    <Property Name="sube_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sube_adı" Type="varchar" MaxLength="50" />
+    <Property Name="sube_adres" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Araç_Sube">
+    <End Role="Sube" Type="Self.Sube" Multiplicity="0..1" />
+    <End Role="Araç" Type="Self.Araç" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sube">
+        <PropertyRef Name="sube_id" />
+      </Principal>
+      <Dependent Role="Araç">
+        <PropertyRef Name="sube_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personel_Sube">
+    <End Role="Sube" Type="Self.Sube" Multiplicity="0..1" />
+    <End Role="Personel" Type="Self.Personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sube">
+        <PropertyRef Name="sube_id" />
+      </Principal>
+      <Dependent Role="Personel">
+        <PropertyRef Name="sube_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Satis_Araç">
+    <End Role="Araç" Type="Self.Araç" Multiplicity="0..1" />
+    <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Araç">
+        <PropertyRef Name="arac_id" />
+      </Principal>
+      <Dependent Role="Satis">
+        <PropertyRef Name="arac_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Satis_Müsteri">
+    <End Role="Müsteri" Type="Self.Müsteri" Multiplicity="0..1" />
+    <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Müsteri">
+        <PropertyRef Name="müsteri_id" />
+      </Principal>
+      <Dependent Role="Satis">
+        <PropertyRef Name="müsteri_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Satis_Personel">
+    <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+    <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="personel_id" />
+      </Principal>
+      <Dependent Role="Satis">
+        <PropertyRef Name="personel_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Araç" EntityType="Self.Araç" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="giris" EntityType="Self.giris" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Müsteri" EntityType="Self.Müsteri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Satis" EntityType="Self.Satis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sube" EntityType="Self.Sube" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Araç_Sube" Association="Self.FK_Araç_Sube">
+      <End Role="Sube" EntitySet="Sube" />
+      <End Role="Araç" EntitySet="Araç" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personel_Sube" Association="Self.FK_Personel_Sube">
+      <End Role="Sube" EntitySet="Sube" />
+      <End Role="Personel" EntitySet="Personel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Satis_Araç" Association="Self.FK_Satis_Araç">
+      <End Role="Araç" EntitySet="Araç" />
+      <End Role="Satis" EntitySet="Satis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Satis_Müsteri" Association="Self.FK_Satis_Müsteri">
+      <End Role="Müsteri" EntitySet="Müsteri" />
+      <End Role="Satis" EntitySet="Satis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Satis_Personel" Association="Self.FK_Satis_Personel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="Satis" EntitySet="Satis" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

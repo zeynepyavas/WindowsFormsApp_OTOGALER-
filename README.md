@@ -1,0 +1,2 @@
+# WindowsFormsApp_OTOGALERI
+ 
